@@ -17,6 +17,15 @@
 //         {code: 'document.body.style.backgroundColor = "' + color + '";'});
 //   });
 // };
+let url = "http://udemy.com/"
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+   console.log(sender);
+});
 
 
+chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    console.log(tabs[0].id);
+  chrome.tabs.sendMessage(tabs[0].id, {message : "this is the message"});
+});
 
