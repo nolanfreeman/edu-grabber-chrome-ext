@@ -1,6 +1,3 @@
-
-console.log("hellooooo");
-
 let UDEMY = 'udemy.com';
 let COURSERA = 'coursera.com';
 
@@ -15,37 +12,23 @@ let templateData = {
     tags : "",
     img : ""
 }
-
-let author = {
-    name : "",
-    img : "",
-    social : {
-        "twitter" : "",
-        "insta" : "",
-        "linkedIn" : "",
-        "website" : "",
-        "github" : ""
-    }
-}
+console.log("running0");
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     let site = window.location.href;
     let data = Object.create(templateData);
     data.status = true;
+    console.log("running1");
     
     if(site.includes(UDEMY)) {
+        console.log("running2");
         data.img = document.getElementsByClassName("styles--introduction-asset__img--9iitL")[0].getAttribute('src');
         data.title = document.getElementsByClassName("clp-lead__title")[0].textContent;
         data.desc = document.getElementsByClassName("clp-lead__headline")[0].textContent;
         data.dur = document.getElementsByClassName("curriculum-header-length")[0].textContent;
-        data.authors.push(Object.create(author));
-        // data.authors[0].name = document.getElementsByClassName("instructor-links__link")[0].textContent;
-        // data.authors[0].img = document.getElementsByClassName("styles--introduction-asset__img--9iitL")[0].getAttribute('src');
-        // data.authors[0].social.twitter = ;
-        // data.authors[0].social.insta = ;
-        // data.authors[0].social.linkedIn = ;
-        // data.authors[0].social.website = ;
-        // data.authors[0].social.github = ;
+        data.authors = [...document.getElementsByClassName("instructor--title__link--1NJ6S")].map(item => {
+            return item.textContent;
+        }); //spread HTML Collection into an array. Dumb
 
         data.site = "Udemy";
         data.link = site;

@@ -2,6 +2,7 @@
 
 'use strict';
 
+console.log("running0");
 // let changeColor = document.getElementById('changeColor');
 
 // chrome.storage.sync.get('color', function(data) {
@@ -25,11 +26,14 @@ let desc = document.getElementById("resource-desc");
 let dur = document.getElementById("resource-dur");
 let site = document.getElementById("resource-site-name");
 let link = document.getElementById("resource-link");
+let authors = document.getElementById("resource-authors");
 // let tags = document.getElementById("resource-tags");
 
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  console.log("running1");
   if(request.status) {
+    console.log("running2");
     header.textContent = "Resource Found. Verify and press send to confim";
     imgText.src = request.img;
     img.value = request.img;
@@ -38,6 +42,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     dur.value = request.dur;
     site.value = request.site;
     link.value = request.link;
+    authors.value = request.authors.reduce((value, current) => {
+      return value += " & " + current;
+    })
+
+    console.log(request.authors);
   } else {
     header.textContent = "No Resourse Found... Find the main info page or enter manually";
   }
@@ -46,6 +55,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 
 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+  console.log("running3");
     console.log(tabs[0].id);
   chrome.tabs.sendMessage(tabs[0].id, {message : "this is the message"});
 });
@@ -58,16 +68,4 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 //   site : "",
 //   link : "",
 //   tags : ""
-// }
-
-// let author = {
-//   name : "",
-//   img : "",
-//   social : {
-//       "twitter" : "",
-//       "insta" : "",
-//       "linkedIn" : "",
-//       "website" : "",
-//       "github" : ""
-//   }
 // }
