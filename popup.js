@@ -17,10 +17,31 @@
 //         {code: 'document.body.style.backgroundColor = "' + color + '";'});
 //   });
 // };
-let url = "http://udemy.com/"
+let header = document.getElementById("header");
+let imgText = document.getElementById("resource-img-text");
+let img = document.getElementById("resource-img");
+let name = document.getElementById("resource-name");
+let desc = document.getElementById("resource-desc");
+let dur = document.getElementById("resource-dur");
+let site = document.getElementById("resource-site-name");
+let link = document.getElementById("resource-link");
+// let tags = document.getElementById("resource-tags");
+
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-   console.log(sender);
+  if(request.status) {
+    header.textContent = "Resource Found. Verify and press send to confim";
+    imgText.src = request.img;
+    img.value = request.img;
+    name.value = request.title;
+    desc.value = request.desc;
+    dur.value = request.dur;
+    site.value = request.site;
+    link.value = request.link;
+  } else {
+    header.textContent = "No Resourse Found... Find the main info page or enter manually";
+  }
+
 });
 
 
@@ -29,3 +50,24 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
   chrome.tabs.sendMessage(tabs[0].id, {message : "this is the message"});
 });
 
+// let templateData = {
+//   title : "",
+//   desc : "",
+//   dur : "",
+//   authors : [],
+//   site : "",
+//   link : "",
+//   tags : ""
+// }
+
+// let author = {
+//   name : "",
+//   img : "",
+//   social : {
+//       "twitter" : "",
+//       "insta" : "",
+//       "linkedIn" : "",
+//       "website" : "",
+//       "github" : ""
+//   }
+// }
