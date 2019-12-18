@@ -2,7 +2,6 @@
 
 'use strict';
 
-console.log("running0");
 // let changeColor = document.getElementById('changeColor');
 
 // chrome.storage.sync.get('color', function(data) {
@@ -31,12 +30,19 @@ let authors = document.getElementById("resource-authors");
 
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  console.log("running1");
+
+  console.log(request.img);
+  if(request.img === undefined) {
+    img.hidden = true;
+    imgText.classList.remove("hidden");
+  }
+
   if(request.status) {
-    console.log("running2");
-    header.textContent = "Resource Found. Verify and press send to confim";
-    imgText.src = request.img;
-    img.value = request.img;
+    header.textContent = "Found! Verify and Press Send to Confirm";
+    img.hidden = false;
+    imgText.classList.add("hidden");
+    imgText.value = request.img;
+    img.src = request.img;
     name.value = request.title;
     desc.value = request.desc;
     dur.value = request.dur;
@@ -45,18 +51,14 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     authors.value = request.authors.reduce((value, current) => {
       return value += " & " + current;
     })
-
-    console.log(request.authors);
   } else {
-    header.textContent = "No Resourse Found... Find the main info page or enter manually";
+    header.textContent = "Nothing here... See guide or enter manually";
   }
 
 });
 
 
 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-  console.log("running3");
-    console.log(tabs[0].id);
   chrome.tabs.sendMessage(tabs[0].id, {message : "this is the message"});
 });
 

@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
     <style>
       body {
         display: flex;
         flex-direction: column;
         width: fit-content;
+        font-family: 'Ubuntu', sans-serif;
+        background-color: whitesmoke;
+      }
+      a {
+        text-decoration: none;
       }
       header {
         display: flex;
         justify-content: space-between;
         width: 100%;
+      }
+      #header {
+        text-align: center;
+        color: #2c3e50;
       }
       #skillTreeIcon {
         width: 100px;
@@ -23,11 +33,21 @@
         flex-direction: column;
       }
       input {
-        border-radius: 6px;
+        border-radius: 4px;
+        border: 1.5px solid #2c3e50;
         display: block;
         width: 350px;
         height: 1.5rem;
         margin-top: 0.25rem;
+        padding-left: 0.5rem;
+        color: #34495e;
+        margin-bottom: 0.5rem;
+      }
+      #resource-img {
+        object-fit: contain;
+        height: 120px;
+        border-radius: 6px;
+        margin-bottom: 0.5rem;
       }
       #resource-dur, #resource-site-name {
         display: inline-block;
@@ -35,6 +55,8 @@
       }
       #save-button {
         width: 40%;
+        background-color: #34495e;
+        color: whitesmoke;
       }
       .input-section {
         display: flex;
@@ -42,10 +64,25 @@
       }
       #submit-section {
         display: flex;
+        justify-content: center;
+      }
+      #clear-button {
+        width: 10%;
+        background-color: #e74c3c;
+        color: whitesmoke;
+        border-radius: 4px;
       }
 
-
-
+      #help-button {
+        position: absolute;
+        bottom: 0.5rem;
+        right: 0.5rem;
+        width: 20px;
+        height: 20px;
+        background-color: gray;
+        border-radius: 100%;
+        text-align: center;
+      }
       .hidden {
         visibility: hidden;
       }
@@ -104,21 +141,15 @@
           <input type="text" id="resource-link" name="url" placeholder="" value="" />
         </div>
         <div id="submit-section">
-          <input type="submit" value="Send" id="save-button" />
-          <button onclick="clearForm()">D</button>
+          <input type="submit" value="Send to SkillTree" id="save-button" />
+          <button onclick="clearForm()" id="clear-button">D</button>
         </div>
-
-        
-
-        
-
-        
 
         <!-- <input type="text" id="resource-tags" name="tags" placeholder="" value="" /> -->
       </form>
 
       
-      <!-- <input type="textbox" id="resource-author-social-links" /> -->
+      <a id="help-button" href="">a</a>
     </main>
     <footer>
 

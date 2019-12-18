@@ -12,16 +12,13 @@ let templateData = {
     tags : "",
     img : ""
 }
-console.log("running0");
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     let site = window.location.href;
     let data = Object.create(templateData);
     data.status = true;
-    console.log("running1");
     
-    if(site.includes(UDEMY)) {
-        console.log("running2");
+    if(site.includes(UDEMY) && !(site.includes("/learn/"))) {
         data.img = document.getElementsByClassName("styles--introduction-asset__img--9iitL")[0].getAttribute('src');
         data.title = document.getElementsByClassName("clp-lead__title")[0].textContent;
         data.desc = document.getElementsByClassName("clp-lead__headline")[0].textContent;
