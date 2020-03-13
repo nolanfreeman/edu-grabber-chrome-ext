@@ -40,7 +40,7 @@
         height: 1.5rem;
         margin-top: 0.25rem;
         padding-left: 0.5rem;
-        color: #34495e;
+        color: #2c3e50;
         margin-bottom: 0.5rem;
       }
       #resource-img {
@@ -55,7 +55,7 @@
       }
       #save-button {
         width: 40%;
-        background-color: #34495e;
+        background-color: #2c3e50;
         color: whitesmoke;
       }
       .input-section {
@@ -115,11 +115,11 @@
           <input type="text" id="resource-img-text" name="img" placeholder="Image URL" value="" />
         </div>
         <div class="input-section">
-          <label for="resource-name">Title</label>
+          <label for="resource-name">Title*</label>
           <input type="text" id="resource-name" name="title" placeholder="eg. A Beginner's Guide to Space Travel" value="" />
         </div>
         <div class="input-section">
-          <label for="resource-authors">Author(s)</label>
+          <label for="resource-authors">Author(s)*</label>
           <input type="textbox" id="resource-authors" name="authors" placeholder="eg. Bruce Lee & Kevin Lee" value=""  />
         </div>
         <div class="input-section">
@@ -127,9 +127,9 @@
           <input type="text" id="resource-desc" name="desc" placeholder="" value="" />
         </div>
         <div class="inline-section">
-          <div class="input-section">
+          <div class="input-section" title="hh:mm:ss or #pages">
             <label for="resource-dur">Length</label>
-            <input type="text" id="resource-dur" name="dur" placeholder="hh:mm:ss" value="" />
+            <input type="text" id="resource-dur" name="dur" placeholder='hh:mm:ss' value="" />
           </div>
           <div class="input-section">
             <label for="resource-site-name">Publisher</label>
@@ -139,6 +139,10 @@
         <div class="input-section">
           <label for="resource-link">URL</label>
           <input type="text" id="resource-link" name="url" placeholder="" value="" />
+        </div>
+        <div class="input-section">
+          <label for="json">JSON</label>
+          <input type="text" id="json" name="json" placeholder="" value="" />
         </div>
         <div id="submit-section">
           <input type="submit" value="Send to SkillTree" id="save-button" />

@@ -26,11 +26,13 @@ let dur = document.getElementById("resource-dur");
 let site = document.getElementById("resource-site-name");
 let link = document.getElementById("resource-link");
 let authors = document.getElementById("resource-authors");
+let json = document.getElementById("json");
 // let tags = document.getElementById("resource-tags");
 
 
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-
+chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
+  console.log(req[0]);
+  let request = req[0];
   console.log(request.img);
   if(request.img === undefined) {
     img.hidden = true;
@@ -51,6 +53,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     authors.value = request.authors.reduce((value, current) => {
       return value += " & " + current;
     })
+
+    json.value = req.map(obj => JSON.stringify(obj));
   } else {
     header.textContent = "Nothing here... See guide or enter manually";
   }
